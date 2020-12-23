@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/routing
+        https://symfony.com/schema/routing/routing-1.0.xsd">
+
+    <!-- the controller value has the format 'controller_class::method_name' -->
+    <route id="blog_list" path="/blog"
+           controller="App\Controller\BlogController::blog_list"/>
+    
+    <route id="api_post_show" path="/api/posts/{id}"
+        controller="App\Controller\BlogApiController::show"
+        methods="GET|HEAD"/>
+
+    <route id="api_post_edit" path="/api/posts/{id}"
+        controller="App\Controller\BlogApiController::edit"
+        methods="PUT"/>
+    
+    <route id="contact" path="/contact" controller="App\Controller\DefaultController::contact">
+        <condition>context.getMethod() in ['GET', 'HEAD'] and request.headers.get('User-Agent') matches '/firefox/i'</condition>
+        <!-- expressions can also include config parameters: -->
+        <!-- <condition>request.headers.get('User-Agent') matches '%app.allowed_browsers%'</condition> -->
+    </route>
+</routes>
