@@ -16,9 +16,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/blog/{page<\d+>}", name="blog_list")
+     * @Route("/blog/{page}", name="blog_index", defaults={"page": 1, "title": "Hello world!"})
      */
-    public function blog_list()
+    public function index(int $page, string $title): Response
+    {
+        // ...
+    }
+    /**
+     * @Route("/blog/{page<\d+>?1}", name="blog_list")
+     */
+    public function blog_list(int $page)
     {
         // ...
     }
@@ -26,7 +33,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{slug}", name="blog_show")
      */
-    public function show(string $slug): Response
+    public function show(BlogPost $post): Response
     {
         // $slug will equal the dynamic part of the URL
         // e.g. at /blog/yay-routing, then $slug='yay-routing'
