@@ -22,4 +22,30 @@ return function (RoutingConfigurator $routes) {
         // expressions can also include config parameters:
         // 'request.headers.get("User-Agent") matches "%app.allowed_browsers%"'
     ;
+    $routes->add('doc_shortcut', '/doc')
+        ->controller(RedirectController::class)
+         ->defaults([
+            'route' => 'doc_page',
+            // optionally you can define some arguments passed to the route
+            'page' => 'index',
+            'version' => 'current',
+            // redirections are temporary by default (code 302) but you can make them permanent (code 301)
+            'permanent' => true,
+            // add this to keep the original query string parameters when redirecting
+            'keepQueryParams' => true,
+            // add this to keep the HTTP method when redirecting. The redirect status changes:
+            // * for temporary redirects, it uses the 307 status code instead of 302
+            // * for permanent redirects, it uses the 308 status code instead of 301
+            'keepRequestMethod' => true,
+        ])
+    ;
+    $routes->add('legacy_doc', '/legacy/doc')
+        ->controller(RedirectController::class)
+         ->defaults([
+            // this value can be an absolute path or an absolute URL
+            'path' => 'https://legacy.example.com/doc',
+            // redirections are temporary by default (code 302) but you can make them permanent (code 301)
+            'permanent' => true,
+        ])
+    ;
 };
