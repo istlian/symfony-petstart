@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RouterInterface;
 // ...
 
-class SomeCommand extends Command
+abstract class SomeCommand extends Command
 {
     private $router;
 
