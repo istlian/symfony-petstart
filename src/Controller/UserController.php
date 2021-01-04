@@ -10,6 +10,13 @@ class UserController extends AbstractController
 {
     // ...
     
+    public function index(): Response
+    {
+        $projectDir = $this->getParameter('kernel.project_dir');
+        $adminEmail = $this->getParameter('app.admin_email');
+
+        // ...
+    }   
     /**
      * @Route("/user/notifications", name="app_user_notifications")
      */

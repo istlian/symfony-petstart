@@ -26,7 +26,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/", name="homepage", stateless=true)
+     * @Route("/home", name="homepage", stateless=true)
      */
     public function homepage(): Response
     {
