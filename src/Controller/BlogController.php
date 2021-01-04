@@ -21,21 +21,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class BlogController extends AbstractController
 {
     /**
-     * @Route("/{_locale}", name="index")
+     * @Route("/", name="blog_index")
      */
-    public function index(int $page, string $title): Response
+    public function index(): Response
     {
         // ...
+        return $this->render('blog/index.html.twig', ['blog_posts ' => []]);
     }
-    
-    /**
-     * @Route("/{_locale}/posts/{slug}", name="show")
-     */
-    public function show(BlogPost $post): Response
-    {
-        // $slug will equal the dynamic part of the URL
-        // e.g. at /blog/yay-routing, then $slug='yay-routing'
 
+    /**
+     * @Route("/article/{slug}", name="blog_post")
+     */
+    public function show(string $slug): Response
+    {
         // ...
     }
     
@@ -69,5 +67,15 @@ class BlogController extends AbstractController
         $signUpPageInDutch = $this->generateUrl('sign_up', ['_locale' => 'nl']);
 
         // ...
+    }
+    
+    public function recentArticles(int $max = 3): Response
+    {
+        // get the recent articles somehow (e.g. making a database query)
+        $articles = ['...', '...', '...'];
+
+        return $this->render('blog/_recent_articles.html.twig', [
+            'articles' => $articles
+        ]);
     }
 }

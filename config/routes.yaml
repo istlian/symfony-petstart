@@ -51,3 +51,22 @@ legacy_doc:
         # this value can be an absolute path or an absolute URL
         path: 'https://legacy.example.com/doc'
         permanent: true
+        
+acme_privacy:
+    path:          /privacy
+    controller:    Symfony\Bundle\FrameworkBundle\Controller\TemplateController
+    defaults:
+        # the path of the template to render
+        template:  'static/privacy.html.twig'
+
+        # special options defined by Symfony to set the page cache
+        maxAge:    86400
+        sharedAge: 86400
+
+        # whether or not caching should apply for client caches only
+        private: true
+
+        # optionally you can define some arguments passed to the template
+        context:
+            site_name: 'ACME'
+            theme: 'dark'

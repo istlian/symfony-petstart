@@ -2,14 +2,17 @@
 namespace App\Service;
 
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Twig\Environment;
 
 class SomeService
 {
     private $router;
+    private $twig;
 
-    public function __construct(UrlGeneratorInterface $router)
+    public function __construct(UrlGeneratorInterface $router, Environment $twig)
     {
         $this->router = $router;
+         $this->twig = $twig;
     }
 
     public function someMethod()
@@ -31,5 +34,15 @@ class SomeService
         // when a route is localized, Symfony uses by default the current request locale
         // pass a different '_locale' value if you want to set the locale explicitly
         $signUpPageInDutch = $this->router->generate('sign_up', ['_locale' => 'nl']);
+    }
+    
+    public function someMethod2()
+    {
+        // ...
+
+        $htmlContents = $this->twig->render('product/index.html.twig', [
+            'category' => '...',
+            'promotions' => ['...', '...'],
+        ]);
     }
 }

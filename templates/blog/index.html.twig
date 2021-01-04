@@ -1,0 +1,22 @@
+{# the image lives at "public/images/logo.png" #}
+<img src="{{ asset('images/logo.png') }}" alt="Symfony!"/>
+
+{# the CSS file lives at "public/css/blog.css" #}
+<link href="{{ asset('css/blog.css') }}" rel="stylesheet"/>
+
+{# the JS file lives at "public/bundles/acme/js/loader.js" #}
+<script src="{{ asset('bundles/acme/js/loader.js') }}"></script>
+
+<a href="{{ path('blog_index') }}">Homepage</a>
+
+{# ... #}
+
+{{ include('blog/_user_profile.html.twig') }}
+
+{% for post in blog_posts %}
+    <h1>
+        <a href="{{ path('blog_post', {slug: post.slug}) }}">{{ post.title }}</a>
+    </h1>
+
+    <p>{{ post.excerpt }}</p>
+{% endfor %}

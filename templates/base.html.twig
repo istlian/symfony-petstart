@@ -31,6 +31,17 @@
             {% endfor %}
         {% endfor %}
         
+        <div id="sidebar">
+            {# if the controller is associated with a route, use the path() or url() functions #}
+            {{ render(path('latest_articles', {max: 3})) }}
+            {{ render(url('latest_articles', {max: 3})) }}
+
+            {# if you don't want to expose the controller with a public URL,
+               use the controller() function to define the controller to execute #}
+            {{ render(controller(
+                'App\\Controller\\BlogController::recentArticles', {max: 3}
+            )) }}
+        </div>
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>

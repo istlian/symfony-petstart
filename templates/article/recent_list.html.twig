@@ -1,0 +1,14 @@
+{# templates/article/recent_list.html.twig #}
+{# the contents of this variable are sent to the Web Debug Toolbar
+   instead of dumping them inside the page contents #}
+{% dump articles %}
+
+{% for article in articles %}
+    {# the contents of this variable are dumped inside the page contents
+       and they are visible on the web page #}
+    {{ dump(article) }}
+
+    <a href="/article/{{ article.slug }}">
+        {{ article.title }}
+    </a>
+{% endfor %}
